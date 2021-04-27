@@ -1,0 +1,28 @@
+<h1><%= @album.title %></h1>
+
+<!-- Album administration links -->
+
+
+
+<!-- Upload form -->
+<div id="image_upload">
+  <p>Upload new images to the album:</p>
+  <%= form_for @album, :url => {:action => :upload_images}, :html => {:multipart => true} do |f| %>
+    <%= f.hidden_field :secret %>
+
+    <%= label_tag "name" %>
+    <%= text_field_tag :name, (if current_user.blank? then "" else current_user.name end) %><br />
+
+    <%= f.file_field :images, :multiple => "" %>
+    <%= f.submit "Upload images" %>
+  <% end %>
+</div>
+
+<!-- Thumbnail images -->
+<div id="thumbs">
+  <%= render :partial => "image/thumb",
+    :collection => @album.images %>
+</div>
+
+<!-- Main image -->
+<div id="main-image"></div>

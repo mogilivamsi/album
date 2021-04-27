@@ -1,0 +1,8 @@
+<div>
+  <%= form_for(@album) do |f| %>
+    <%= f.label(:name, "Album name") %>
+    <%= f.text_field(:name, :size => 32) %><br />
+  
+    <%= f.submit "Save" %>
+  <% end %>
+</div>
